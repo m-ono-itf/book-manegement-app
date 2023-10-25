@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>本の一覧表示</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<div th:replace="share::header"></div>
+	<div class="container">
+    <div class="row">
+        <div th:each="book : ${bookList}" th:object="${book}" class="card col-4 me-3 mb-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title" th:text="*{title}"></h5>
+                <p class="card-text" th:text="*{price} + 円"></p>
+                <p class="card-text" th:text="*{office_location}"></p>
+                <p class="card-text" th:text="登録日時： + *{date}"></p>
+                <a class="btn btn-success" th:href="@{/book-edit(id=*{id})}">編集</a>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-primary mt-3" th:href="@{/book-register}">新規追加</a>
+</div>
+<!--	<table>-->
+<!--		<tr th:each="book : ${bookList}" th:object="${book}">-->
+<!--			<td th:text="*{id}"></td>-->
+<!--			<td th:text="*{title}"></td>-->
+<!--			<td th:text="*{price}"></td>-->
+<!--			<td th:text="*{office_location}"></td>-->
+<!--			<td th:text="*{date}"></td>-->
+<!--		</tr>-->
+<!--	</table>-->
+</body>
+</html>

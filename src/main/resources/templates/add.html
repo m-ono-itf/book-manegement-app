@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>本を新規登録する</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div th:replace="share::header"></div>
+    <div class="container">
+        <h1>本を新規で登録する</h1>
+        <form th:action="@{/book-register}" th:object="${bookForm}" method="POST">
+            <div class="mb-3">
+                <label for="bookTitle" class="form-label">タイトル</label>
+                <input id="bookTitle" class="form-control" type="text" th:field="*{title}">
+                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger">Title Error</p>
+            </div>
+            <div class="mb-3">
+                <label for="bookPrice" class="form-label">値段</label>
+                <input id="bookPrice" class="form-control" type="number" th:field="*{price}">
+                <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">Price Error</p>
+            </div>
+            <div class="mb-3">
+                <label for="office_location" class="form-label">管理オフィス</label>
+                <select id="office_location" class="form-select" type="text" th:field="*{office_location}">
+                	<option value="福岡オフィス">福岡オフィス</option>
+        			<option value="大阪オフィス">大阪オフィス</option>
+                </select>
+            </div>
+            <div class="mb-3">
+   				 <label for="date" class="form-label">登録日</label>
+  				 <input id="date" class="form-control" type="date" th:field="*{date}">
+  				 <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="text-danger">Date Error</p>
+			</div>
+			
+
+            <input type="submit" class="btn btn-primary mb-3" value="新規登録">
+        </form>
+        <a th:href="@{/booklist}" class="btn btn-secondary">一覧に戻る</a>
+    </div>
+</body>
+</html>
